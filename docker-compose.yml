@@ -1,0 +1,17 @@
+version: '3' 
+services:
+  docker-PyCharm:
+    image: openkbs/docker-PyCharm
+    build:
+      context: ./Dockerfile
+    container_name: docker-PyCharm
+    environment:
+      - USER_ID=${USER_ID:-1000}
+      - GROUP_ID=${GROUP_ID:-1000}
+    env_file:
+      - ./docker.env
+#    ports:
+#      - 8080:8080
+    volumes:
+      - ./workspace:/home/developer/workspace
+
