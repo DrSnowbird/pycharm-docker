@@ -1,11 +1,10 @@
 # PyCharm IDE in a Docker container
 
-[![](https://images.microbadger.com/badges/image/openkbs/pycharm-docker.svg)](https://microbadger.com/images/openkbs/pycharm-docker "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/openkbs/pycharm-docker.svg)](https://microbadger.com/images/openkbs/pycharm-docker "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/openkbs/pycharm-docker.svg)](https://microbadger.com/images/openkbs/pycharm-docker "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/openkbs/pycharm-docker.svg)](https://microbadger.com/images/openkbs/pycharm-docker "Get your own version badge on microbadger.com")
 
 * PyCharm VERSION=PyCharmCE2018.1
 
-## Requirements
+# Requirements
 * Docker 1.13.1+ or latest 17.12.1-ce 
 * An X11 server socket enabled (e.g. xhost+)
 
@@ -15,14 +14,14 @@ Image is pulling from openkbs/pycharm-docker
 ./run.sh
 ```
 
-## Build
+# Build
 You can build your own image locally.
 
 ```
 ./build.sh
 ```
 
-## Making plugins persist between sessions
+# Making plugins persist between sessions
 If you run "./run.sh" instead of "docker-compose up", you don't have to do anything as below.
 
 PyCharm configurations are kept on `$HOME/PyCharmCE2018.1` inside the container, so if you
@@ -40,7 +39,7 @@ docker run -ti --rm \
            openkbs/PyCharm-docker
 ```
 
-## Other docker-based IDE
+# Other docker-based IDE
 * [openkbs/eclipse-oxygen-docker](https://hub.docker.com/r/openkbs/eclipse-oxygen-docker/)
 * [openkbs/netbeans](https://hub.docker.com/r/openkbs/netbeans/)
 * [openkbs/scala-ide-docker](https://hub.docker.com/r/openkbs/scala-ide-docker/)
