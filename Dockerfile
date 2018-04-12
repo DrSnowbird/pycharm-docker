@@ -35,6 +35,10 @@ RUN ln -s ${PRODUCT_EXE} /usr/bin/$(basename ${PRODUCT_EXE}) && \
 # -rw-r--r-- 1 root root  148 Aug 17  2015 .profile
 # drwxr-xr-x 3 root root 4096 Feb  1 18:00 PycharmProjects
 
+## ---- update pip3 ----
+RUN pip3 install --upgrade pip && \
+    pip3 install geopy
+
 ## ---- user: developer ----
 ENV USER_NAME=developer
 ENV HOME=/home/${USER_NAME}
