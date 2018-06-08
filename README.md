@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/openkbs/pycharm-docker.svg)](https://microbadger.com/images/openkbs/pycharm-docker "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/openkbs/pycharm-docker.svg)](https://microbadger.com/images/openkbs/pycharm-docker "Get your own version badge on microbadger.com")
 
-* PyCharm VERSION=PyCharmCE2018.1
+* PyCharm VERSION=PyCharmCE2018.1.4
 
 # Requirements
 * Docker 1.13.1+ or latest 17.12.1-ce 
@@ -21,8 +21,8 @@ You can build your own image locally.
 ./build.sh
 ```
 
-# Making plugins persist between sessions
-If you run "./run.sh" instead of "docker-compose up", you don't have to do anything as below.
+# (Optional) Making plugins persist between sessions
+If you run "./run.sh" instead of "docker-compose up", **you don't have to do anything as below**.
 
 PyCharm configurations are kept on `$HOME/PyCharmCE2018.1` inside the container, so if you
 want to keep them around after you close it, you'll need to share it with your
@@ -39,7 +39,7 @@ docker run -ti --rm \
            openkbs/PyCharm-docker
 ```
 
-# Other docker-based IDE
+# See Also - Other docker-based IDE
 * [openkbs/eclipse-oxygen-docker](https://hub.docker.com/r/openkbs/eclipse-oxygen-docker/)
 * [openkbs/netbeans](https://hub.docker.com/r/openkbs/netbeans/)
 * [openkbs/scala-ide-docker](https://hub.docker.com/r/openkbs/scala-ide-docker/)
@@ -59,7 +59,7 @@ More resource in X11 display of Eclipse on your host machine's OS, please see
 * [X11 Display with Xhost](http://www.ethicalhackx.com/fix-gtk-warning-cannot-open-display/)
 
 # Other possible Issues
-You might see the warning message in the launching xterm console like below, you can just ignore it. I googles around and some blogs just suggested to ignore since the Eclipse IDE still functional ok.
+You might see the warning message in the launching xterm console like below, you can just ignore it. I googles around and some blogs just suggested to ignore since the IDE still functional ok.
 ```
 ** (eclipse:1): WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-wrKH8o5rny: Connection refused
 

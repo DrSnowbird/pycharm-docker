@@ -4,7 +4,7 @@ MAINTAINER DrSnowbird "DrSnowbird@openkbs.org"
 
 ARG INSTALL_DIR=${INSTALL_DIR:-/opt}
 
-ARG PRODUCT_VER=${PRODUCT_VER:-2018.1}
+ARG PRODUCT_VER=${PRODUCT_VER:-2018.1.4}
 
 ARG PRODUCT_NAME=pycharm-community
 ARG PRODUCT_EXE_NAME=pycharm.sh
@@ -35,13 +35,14 @@ RUN ln -s ${PRODUCT_EXE} /usr/bin/$(basename ${PRODUCT_EXE}) && \
 # -rw-r--r-- 1 root root  148 Aug 17  2015 .profile
 # drwxr-xr-x 3 root root 4096 Feb  1 18:00 PycharmProjects
 
-## ---- update pip3 ----
-RUN pip3 install --upgrade pip && \
-    pip3 install geopy
-
 ## ---- user: developer ----
 ENV USER_NAME=developer
 ENV HOME=/home/${USER_NAME}
+
+## ---- update pip3 ----
+RUN sudo chown -R $USER_NAME:$USER_NAME $HOME && \
+    sudo pip3 install --upgrade pip && \
+    sudo pip3 install geopy
 
 VOLUME "${HOME}/data"
 VOLUME "${HOME}/workspace"
