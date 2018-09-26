@@ -2,7 +2,7 @@
 
 [![](https://images.microbadger.com/badges/image/openkbs/pycharm-docker.svg)](https://microbadger.com/images/openkbs/pycharm-docker "Get your own image badge on microbadger.com") [![](https://images.microbadger.com/badges/version/openkbs/pycharm-docker.svg)](https://microbadger.com/images/openkbs/pycharm-docker "Get your own version badge on microbadger.com")
 
-* PyCharm VERSION=PyCharmCE2018.1.4
+* PyCharm VERSION=PyCharmCE2018.2.4
 
 # Requirements
 * Docker 1.13.1+ or latest 17.12.1-ce 
@@ -39,15 +39,25 @@ docker run -ti --rm \
            openkbs/PyCharm-docker
 ```
 
-# See Also - Other docker-based IDE
+# See Also - Docker-based IDE
+* [openkbs/docker-atom-editor](https://hub.docker.com/r/openkbs/docker-atom-editor/)
+* [openkbs/eclipse-photon-docker](https://hub.docker.com/r/openkbs/eclipse-photon-docker/)
 * [openkbs/eclipse-oxygen-docker](https://hub.docker.com/r/openkbs/eclipse-oxygen-docker/)
-* [openkbs/netbeans](https://hub.docker.com/r/openkbs/netbeans/)
-* [openkbs/scala-ide-docker](https://hub.docker.com/r/openkbs/scala-ide-docker/)
-* [openkbs/pycharm-docker](https://hub.docker.com/r/openkbs/pycharm-docker/)
-* [openkbs/webstorm-docker](https://hub.docker.com/r/openkbs/webstorm-docker/)
 * [openkbs/intellj-docker](https://hub.docker.com/r/openkbs/intellij-docker/)
+* [openkbs/netbeans9-docker](https://hub.docker.com/r/openkbs/netbeans9-docker/)
+* [openkbs/netbeans](https://hub.docker.com/r/openkbs/netbeans/)
+* [openkbs/papyrus-sysml-docker](https://hub.docker.com/r/openkbs/papyrus-sysml-docker/)
+* [openkbs/pycharm-docker](https://hub.docker.com/r/openkbs/pycharm-docker/)
+* [openkbs/scala-ide-docker](https://hub.docker.com/r/openkbs/scala-ide-docker/)
+* [openkbs/sublime-docker](https://hub.docker.com/r/openkbs/sublime-docker/)
+* [openkbs/webstorm-docker](https://hub.docker.com/r/openkbs/webstorm-docker/)
 
-## Reference
+# See Also - Docker-based SQL GUI
+* [Sqlectron SQL GUI at openkbs/sqlectron-docker](https://hub.docker.com/r/openkbs/sqlectron-docker/)
+* [Mysql-Workbench at openkbs/mysql-workbench](https://hub.docker.com/r/openkbs/mysql-workbench/)
+* [PgAdmin4 for PostgreSQL at openkbs/pgadmin-docker](https://hub.docker.com/r/openkbs/pgadmin-docker/)
+
+# Reference
 * https://download.jetbrains.com/idea
 * https://www.jetbrains.com/idea/
 * https://www.jetbrains.com/pycharm/

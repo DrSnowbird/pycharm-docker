@@ -228,7 +228,6 @@ xhost +SI:localuser:$(id -un)
 DISPLAY=${MY_IP}:0 \
 docker run -it \
     --name=${instanceName} \
-    --restart=always \
     ${privilegedString} \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \

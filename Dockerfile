@@ -4,7 +4,7 @@ MAINTAINER DrSnowbird "DrSnowbird@openkbs.org"
 
 ARG INSTALL_DIR=${INSTALL_DIR:-/opt}
 
-ARG PRODUCT_VER=${PRODUCT_VER:-2018.1.4}
+ARG PRODUCT_VER=${PRODUCT_VER:-2018.2.4}
 
 ARG PRODUCT_NAME=pycharm-community
 ARG PRODUCT_EXE_NAME=pycharm.sh
@@ -21,13 +21,13 @@ ARG PRODUCT_EXE=${PRODUCT_HOME}/bin/${PRODUCT_EXE_NAME}
 ############################# 
 WORKDIR ${INSTALL_DIR}
 
-RUN wget -c ${PRODUCT_URL} && \
-    tar xvf ${PRODUCT_TGZ} && \
-    rm ${PRODUCT_TGZ}
-    
-RUN ln -s ${PRODUCT_EXE} /usr/bin/$(basename ${PRODUCT_EXE}) && \
+RUN sudo wget ${PRODUCT_URL} && \
+    sudo tar xvf ${PRODUCT_TGZ} && \
+    sudo rm ${PRODUCT_TGZ}
+
+RUN sudo ln -s ${PRODUCT_EXE} /usr/bin/$(basename ${PRODUCT_EXE}) && \
     ls -al ${PRODUCT_HOME} && \
-    mkdir -p /workspace
+    sudo mkdir -p /workspace
 
 ## -- PyCharm related files ---
 # drwxr-xr-x 4 root root 4096 Feb  1 18:00 .PyCharmCE2018.1
@@ -40,19 +40,16 @@ ENV USER_NAME=developer
 ENV HOME=/home/${USER_NAME}
 
 ## ---- update pip3 ----
-RUN sudo chown -R $USER_NAME:$USER_NAME $HOME && \
-    sudo pip3 install --upgrade pip && \
-    sudo pip3 install geopy
+RUN sudo chown -R ${USER_NAME}:${USER_NAME} $HOME && \
+    sudo -H pip3 install --upgrade pip && \
+    sudo -H pip3 install geopy
 
 VOLUME "${HOME}/data"
 VOLUME "${HOME}/workspace"
 
 WORKDIR ${HOME}/workspace
-
 USER "${USER_NAME}"
-
 ENV PRODUCT_EXE=${PRODUCT_EXE}
-
 ENTRYPOINT "${PRODUCT_EXE}"
 
 #CMD ["/bin/bash"]
