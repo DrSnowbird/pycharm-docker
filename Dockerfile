@@ -4,7 +4,7 @@ MAINTAINER DrSnowbird "DrSnowbird@openkbs.org"
 
 ARG INSTALL_DIR=${INSTALL_DIR:-/opt}
 
-ARG PRODUCT_VER=${PRODUCT_VER:-2018.2.4}
+ARG PRODUCT_VER=${PRODUCT_VER:-2019.1.3}
 
 ARG PRODUCT_NAME=pycharm-community
 ARG PRODUCT_EXE_NAME=pycharm.sh
@@ -21,7 +21,7 @@ ARG PRODUCT_EXE=${PRODUCT_HOME}/bin/${PRODUCT_EXE_NAME}
 ############################# 
 WORKDIR ${INSTALL_DIR}
 
-RUN sudo wget ${PRODUCT_URL} && \
+RUN sudo wget -cq ${PRODUCT_URL} && \
     sudo tar xvf ${PRODUCT_TGZ} && \
     sudo rm ${PRODUCT_TGZ}
 
@@ -30,7 +30,7 @@ RUN sudo ln -s ${PRODUCT_EXE} /usr/bin/$(basename ${PRODUCT_EXE}) && \
     sudo mkdir -p /workspace
 
 ## -- PyCharm related files ---
-# drwxr-xr-x 4 root root 4096 Feb  1 18:00 .PyCharmCE2018.1
+# drwxr-xr-x 4 root root 4096 Feb  1 18:00 .PyCharmCE2019.1
 # drwxr-xr-x 4 root root 4096 Feb  1 18:00 .java
 # -rw-r--r-- 1 root root  148 Aug 17  2015 .profile
 # drwxr-xr-x 3 root root 4096 Feb  1 18:00 PycharmProjects
