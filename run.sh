@@ -33,7 +33,7 @@ BUILD_TYPE=1
 ##       ==> Usually, when not in debugging mode anymore, then use 1 as choice.
 ##       ==> Or, your frequent needs of the container for DEV environment Use.
 ## ------------------------------------------------------------------------
-RUN_TYPE=1
+RUN_TYPE=0
 
 ## ------------------------------------------------------------------------
 ## Change to one (1) if run.sh needs to use host's user/group to run the Container
@@ -47,8 +47,8 @@ USER_VARS_NEEDED=0
 ## Valid "RESTART_OPTION" values:
 ##  { no, on-failure, unless-stopped, always }
 ## ------------------------------------------------------------------------
-#RESTART_OPTION=no
-RESTART_OPTION=unless-stopped
+RESTART_OPTION=no
+#RESTART_OPTION=unless-stopped
 
 ## ------------------------------------------------------------------------
 ## More optional values:
@@ -542,25 +542,29 @@ echo "--------------------------------------------------------"
 ## ---- Setup X11 Display -_-- ##
 #################################
 function setupDisplayType() {
+    NODE_IP=
     if [[ "$OSTYPE" == "linux-gnu" ]]; then
         # ...
         xhost +SI:localuser:$(id -un) 
-        xhost + ${MY_IP}
         xhost + 127.0.0.1
-        export DISPLAY=${MY_IP}:0 
+        echo ${DISPLAY}
     elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
         xhost + 127.0.0.1
         export DISPLAY=host.docker.internal:0
+        echo ${DISPLAY}
     elif [[ "$OSTYPE" == "cygwin" ]]; then
         # POSIX compatibility layer and Linux environment emulation for Windows
-        export DISPLAY=${MY_IP}:0 
+        #export DISPLAY=${NODE_IP}:0 
+        echo ${DISPLAY}
     elif [[ "$OSTYPE" == "msys" ]]; then
         # Lightweight shell and GNU utilities compiled for Windows (part of MinGW)
-        export DISPLAY=${MY_IP}:0 
+        #export DISPLAY=${NODE_IP}:0 
+        echo ${DISPLAY}
     elif [[ "$OSTYPE" == "freebsd"* ]]; then
         # ...
-        export DISPLAY=${MY_IP}:0 
+        #export DISPLAY=${NODE_IP}:0 
+        echo ${DISPLAY}
     else
         # Unknown.
         echo "Unknown OS TYPE: $OSTYPE! Not supported!"
@@ -571,7 +575,8 @@ function setupDisplayType() {
 
 case "${BUILD_TYPE}" in
     0)
-        ## 0: (default) has neither X11 nor VNC/noVNC container build image type 
+        #### 0: (default) has neither X11 nor VNC/noVNC container build image type
+        #### ---- for headless-based / GUI-less ---- ####
         set -x 
         sudo docker run ${REMOVE_OPTION} ${MORE_OPTIONS} ${RUN_OPTION} \
             --name=${instanceName} \
@@ -584,14 +589,12 @@ case "${BUILD_TYPE}" in
             ${imageTag} $*
         ;;
     1)
-        ## 1: X11/Desktip container build image type
+        #### 1: X11/Desktip container build image type
         #### ---- for X11-based ---- ####
-        ##echo ${DISPLAY}
-        ##xhost +SI:localuser:$(id -un) 
-        ##set -x 
-        ##MORE_OPTIONS="${MORE_OPTIONS} -e DISPLAY=$DISPLAY -v $HOME/.chrome:/data -v /dev/shm:/dev/shm -v /etc/hosts:/etc/hosts"
-        ##DISPLAY=${MY_IP}:0
+        set -x 
         setupDisplayType
+        echo ${DISPLAY}
+        MORE_OPTIONS="${MORE_OPTIONS} -e DISPLAY=$DISPLAY -v $HOME/.chrome:/data -v /dev/shm:/dev/shm -v /etc/hosts:/etc/hosts"
         sudo docker run ${REMOVE_OPTION} ${RUN_OPTION} ${MORE_OPTIONS} ${MEDIA_OPTIONS}\
             --name=${instanceName} \
             --restart=${RESTART_OPTION} \
@@ -604,7 +607,7 @@ case "${BUILD_TYPE}" in
             ${imageTag} $*
         ;;
     2)
-        ## 2: VNC/noVNC container build image type
+        #### 2: VNC/noVNC container build image type
         #### ----------------------------------- ####
         #### -- VNC_RESOLUTION setup default --- ####
         #### ----------------------------------- ####
